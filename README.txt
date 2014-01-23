@@ -4,5 +4,5 @@
 
 1. Enable the module.
 2. Now login at different times by changing your system clock.
-3. Go to 'Admin/Reports/User Trend'.
-4. View Monthly Trend, Quarterly Trend and Yearly Trend reports by using different filters.
+3. Go to 'admin/reports/user_trend'.
+4. View Daily, Weekly, Monthly, Quarterly and Yearly login count reports by using different filters.

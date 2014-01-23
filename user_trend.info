@@ -1,9 +1,9 @@
 ; \$Id\$
 name = "User Trend"
-description = "Creates reports for user login trend which includes Yearly Trend, Monthly Trend and Quarterly Trend."
+description = "Creates reports for user login count by Year, Month, Quarter, Week and Day"
 
 package = Other
-; Information added by drupal.org packaging script on 2010-06-26
+; Information added by drupal.org packaging script on 2014-01-23
 version = "7.x-1.0"
 core = 7.x
 datestamp = "1277571630"
