@@ -1,0 +1,58 @@
+/* 
+    Document   : user_trend_style
+    Created on : Feb 11, 2011, 5:29:01 PM
+    Author     : nimishas
+    Description:
+    Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+root { 
+    display: block;
+}
+
+#user_trend_wrapper { clear: none;}
+#user_trend_wrapper table th, #user_trend_wrapper table td {width: 50%; padding-left: 100px; }
+
+/******************************* For Yearly Trend ******************************* */
+#yearly-trend-form #edit-sel-from-year { float: left;}
+#yearly-trend-form #edit-sel-from-year, #yearly-trend-form #edit-sel-to-year { width: 100px;}
+#yearly-trend-form #edit-submit { margin-top: 30px; margin-left: 30px;}
+
+/******************************* For Quarterly Trend ******************************* */
+#quarterly-trend-form #edit-sel-year { float: left; }
+#quarterly-trend-form #edit-submit { margin-top: 30px; margin-left: 30px;}
+
+/******************************* For Monthly Trend ******************************* */
+.form-item-sel-from-month, .form-item-sel-to-month { float: left; }
+#monthly-trend-form #edit-sel-from-year{ margin-top: 23px; margin-left: -108px; }
+#monthly-trend-form #edit-sel-to-year{ margin-top: 23px; margin-left: -90px; }
+#monthly-trend-form #edit-sel-from-month, #monthly-trend-form #edit-sel-to-month { width: 60px; }
+#monthly-trend-form #edit-submit { margin-top: 30px; margin-left: 30px;}
+
+/******************************* For Weekly Trend ******************************* */
+.form-item-sel-from-week, .form-item-sel-to-week { float: left; }
+#weekly-trend-form #edit-sel-to-month { margin-left: 17px; }
+#weekly-trend-form #edit-sel-from-year{ margin-top: 23px; margin-left: -95px; }
+#weekly-trend-form #edit-sel-to-year{ margin-top: 23px; margin-left: -78px; }
+#weekly-trend-form #edit-sel-from-month, #weekly-trend-form #edit-sel-to-month { width: 60px; }
+#weekly-trend-form #edit-submit { margin-top: 30px; margin-left: 30px;}
+#weekly-trend-form .form-item-sel-from-month, #weekly-trend-form .form-item-sel-to-month {
+  margin-top: 20px;
+  margin-left: -160px;
+}
+/******************************* For Daily Trend ******************************* */
+.form-item-sel-from-day, .form-item-sel-to-day { float: left; }
+#daily-trend-form #edit-sel-to-month { margin-left: 17px; }
+#daily-trend-form #edit-sel-from-year{ margin-top: 23px; margin-left: -95px; }
+#daily-trend-form #edit-sel-to-year{ margin-top: 23px; margin-left: -78px; }
+#daily-trend-form #edit-sel-from-month, #daily-trend-form #edit-sel-to-month { width: 60px; }
+#daily-trend-form #edit-submit { margin-top: 30px; margin-left: 30px;}
+#daily-trend-form .form-item-sel-from-month, #daily-trend-form .form-item-sel-to-month {
+  margin-top: 20px;
+  margin-left: -175px;
+}

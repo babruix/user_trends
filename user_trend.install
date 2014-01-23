@@ -1,0 +1,41 @@
+<?php
+// $Id: user_trend.install $
+
+/**
+ * @file
+ * Module installation file
+ */
+
+/**
+ * Implements hook_schema().
+().
+ */
+function user_trend_schema() {
+  $schema['user_trend'] = array(
+    'description' => '',
+    'fields' => array(
+      'id' => array(
+        'description' => 'The primary identifier for tracking entry',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'uid' => array(
+        'type' => 'int',
+        'description' => 'The user {users} uid who logs in',
+        'not null' => TRUE,
+      ),
+      'login_time' => array(
+        'type' => 'int',
+        'description' => 'Unix timestamp of time of login',
+        'not null' => TRUE,
+      ),
+    ),
+    'primary key' => array('id'),
+    'indexes' => array(
+      'uid' => array('uid'),
+    ),
+  );
+  return $schema;
+}
+

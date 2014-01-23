@@ -1,0 +1,81 @@
+<?php
+
+/**
+ * @file
+ * Module to maintain a history of user logins.
+ */
+
+include_once drupal_get_path('module', 'user_trend') . '/' . 'user_trend.pages.inc';
+
+/**
+ * Implements hook_menu().
+().
+ */
+function user_trend_menu() {
+  $items = array();
+  $items['admin/reports/user_trend'] = array(
+    'title' => 'User Trend',
+    'page callback' => 'yearly_trend_report_page',
+    'access callback' => TRUE,
+    'type' => MENU_NORMAL_ITEM,
+    'file' => 'user_trend.pages.inc',
+  );
+  $items['admin/reports/user_trend/yearly'] = array(
+    'title' => 'Yearly Trend',
+    'page callback' => 'yearly_trend_report_page',
+    'access callback' => TRUE,
+    'type' => MENU_DEFAULT_LOCAL_TASK,
+    'file' => 'user_trend.pages.inc',
+    'weight' => -10,
+  );
+  $items['admin/reports/user_trend/quarterly'] = array(
+    'title' => 'Quarterly Trend',
+    'page callback' => 'quarterly_trend_report_page',
+    'access callback' => TRUE,
+    'type' => MENU_LOCAL_TASK,
+    'file' => 'user_trend.pages.inc',
+    'weight' => -8,
+  );
+  $items['admin/reports/user_trend/monthly'] = array(
+    'title' => 'Monthly Trend',
+    'page callback' => 'monthly_trend_report_page',
+    'access callback' => TRUE,
+    'type' => MENU_LOCAL_TASK,
+    'file' => 'user_trend.pages.inc',
+    'weight' => -5,
+  );
+  $items['admin/reports/user_trend/weekly'] = array(
+    'title' => 'Weekly Trend',
+    'page callback' => 'weekly_trend_report_page',
+    'access callback' => TRUE,
+    'type' => MENU_LOCAL_TASK,
+    'file' => 'user_trend.pages.inc',
+    'weight' => -5,
+  );
+  $items['admin/reports/user_trend/daily'] = array(
+    'title' => 'Daily Trend',
+    'page callback' => 'daily_trend_report_page',
+    'access callback' => TRUE,
+    'type' => MENU_LOCAL_TASK,
+    'file' => 'user_trend.pages.inc',
+    'weight' => -3,
+  );
+  return $items;
+}
+
+
+/**
+ * Implements hook_user_login().
+ */
+function user_trend_user_login(&$edit, $account) {
+  // Check if we already have record about this user login today
+  $count = db_query("select count(*) from {user_trend} WHERE uid = :uid  AND from_unixtime(login_time, '%Y-%m-%d') = :day",
+    array(':uid' => $account->uid, ':day' => date('Y-m-d', REQUEST_TIME)))->fetchField();
+  if ($count > 0) {
+    return;
+  }
+
+  // Insert user record into 'user_trend' table when one logs in.
+  db_query("INSERT into {user_trend} (id, uid, login_time) VALUES(:id, :uid, :login_time)",
+    array(':id' => NULL, ':uid' => $account->uid, ':login_time' => REQUEST_TIME));
+}

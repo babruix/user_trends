@@ -1,0 +1,9 @@
+; \$Id\$
+name = "User Trend"
+description = "Creates reports for user login trend which includes Yearly Trend, Monthly Trend and Quarterly Trend."
+
+package = Other
+; Information added by drupal.org packaging script on 2010-06-26
+version = "7.x-1.0"
+core = 7.x
+datestamp = "1277571630"
