@@ -16,14 +16,14 @@ function user_trend_menu() {
   $items['admin/reports/user_trend'] = array(
     'title' => 'User Trend',
     'page callback' => 'yearly_trend_report_page',
-    'access callback' => TRUE,
+    'access arguments' => array('administer user trends'),
     'type' => MENU_NORMAL_ITEM,
     'file' => 'user_trend.pages.inc',
   );
   $items['admin/reports/user_trend/yearly'] = array(
     'title' => 'Yearly Trend',
     'page callback' => 'yearly_trend_report_page',
-    'access callback' => TRUE,
+    'access arguments' => array('administer user trends'),
     'type' => MENU_DEFAULT_LOCAL_TASK,
     'file' => 'user_trend.pages.inc',
     'weight' => -10,
@@ -31,7 +31,7 @@ function user_trend_menu() {
   $items['admin/reports/user_trend/quarterly'] = array(
     'title' => 'Quarterly Trend',
     'page callback' => 'quarterly_trend_report_page',
-    'access callback' => TRUE,
+    'access arguments' => array('administer user trends'),
     'type' => MENU_LOCAL_TASK,
     'file' => 'user_trend.pages.inc',
     'weight' => -8,
@@ -39,7 +39,7 @@ function user_trend_menu() {
   $items['admin/reports/user_trend/monthly'] = array(
     'title' => 'Monthly Trend',
     'page callback' => 'monthly_trend_report_page',
-    'access callback' => TRUE,
+    'access arguments' => array('administer user trends'),
     'type' => MENU_LOCAL_TASK,
     'file' => 'user_trend.pages.inc',
     'weight' => -5,
@@ -47,7 +47,7 @@ function user_trend_menu() {
   $items['admin/reports/user_trend/weekly'] = array(
     'title' => 'Weekly Trend',
     'page callback' => 'weekly_trend_report_page',
-    'access callback' => TRUE,
+    'access arguments' => array('administer user trends'),
     'type' => MENU_LOCAL_TASK,
     'file' => 'user_trend.pages.inc',
     'weight' => -5,
@@ -55,7 +55,7 @@ function user_trend_menu() {
   $items['admin/reports/user_trend/daily'] = array(
     'title' => 'Daily Trend',
     'page callback' => 'daily_trend_report_page',
-    'access callback' => TRUE,
+    'access arguments' => array('administer user trends'),
     'type' => MENU_LOCAL_TASK,
     'file' => 'user_trend.pages.inc',
     'weight' => -3,
@@ -63,6 +63,17 @@ function user_trend_menu() {
   return $items;
 }
 
+/**
+ * Implements hook_permission().
+ */
+function user_trend_permission() {
+  return array(
+    'administer user trends' => array(
+      'title' => t('Administer user trends'),
+      'description' => t('See statistics about user login trends.'),
+    ),
+  );
+}
 
 /**
  * Implements hook_user_login().
@@ -76,6 +87,6 @@ function user_trend_user_login(&$edit, $account) {
   }
 
   // Insert user record into 'user_trend' table when one logs in.
-  db_query("INSERT into {user_trend} (id, uid, login_time) VALUES(:id, :uid, :login_time)",
+  db_query("INSERT INTO {user_trend} (id, uid, login_time) VALUES(:id, :uid, :login_time)",
     array(':id' => NULL, ':uid' => $account->uid, ':login_time' => REQUEST_TIME));
 }
